@@ -1,13 +1,14 @@
 Summary:	Japanese input method for GTK2
 Name:		im-ja
 Version:	0.6
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Applications/Editors
 Source0:	http://im-ja.sourceforge.net/%{name}-%{version}.tar.gz
+# Source0-md5:	aeb6e5454587fd7e7a3f41629d26b914
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Requires:	gtk2 >= 2.0.6
-BuildPrereq:	gtk2-devel
+Requires:	gtk+2 >= 2.0.6
+BuildRequires:	gtk+2-devel
 
 %description
 im-ja is a Japanese input module for GTK2. Currently supports
@@ -20,18 +21,13 @@ GUI configurator.
 %setup -q
 
 %build
-./configure \
---prefix=%{_prefix} \
-	--mandir=%{_mandir} \
---sysconfdir=%{_sysconfdir}
+%configure --disable-wnn
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
-prefix=$RPM_BUILD_ROOT%{_prefix} \
-	mandir=$RPM_BUILD_ROOT%{_mandir} \
-sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -39,11 +35,11 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 %{_bindir}/gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules
-GCONF_CONFIG_SOURCE=`%{_bindir}/gconftool-2 --get-default-source`%{_bindir}/gconftool-2 --makefile-install-rule /etc/gconf/schemas/im-ja.schemas > /dev/null
+GCONF_CONFIG_SOURCE=`%{_bindir}/gconftool-2 --get-default-source` %{_bindir}/gconftool-2 --makefile-install-rule /etc/gconf/schemas/im-ja.schemas > /dev/null
 
 %postun -p /sbin/ldconfig
 %{_bindir}/gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules
-GCONF_CONFIG_SOURCE=`%{_bindir}/gconftool-2 --get-default-source`%{_bindir}/gconftool-2 --makefile-install-rule /etc/gconf/schemas/im-ja.schemas > /dev/null
+GCONF_CONFIG_SOURCE=`%{_bindir}/gconftool-2 --get-default-source` %{_bindir}/gconftool-2 --makefile-install-rule /etc/gconf/schemas/im-ja.schemas > /dev/null
 
 %files
 %defattr(644,root,root,755)
@@ -52,5 +48,6 @@ GCONF_CONFIG_SOURCE=`%{_bindir}/gconftool-2 --get-default-source`%{_bindir}/gcon
 %{_libdir}/im-ja/*
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/control-center-2.0/*
-%{_datadir}/im-ja/*
+%{_datadir}/%{name}/*
 %{_mandir}/man1/*
+%{_sysconfdir}/gconf/schemas/%{name}.schemas
