@@ -1,18 +1,21 @@
 Summary:	Japanese input method for GTK2
 Summary(pl):	Metoda wprowadzania znaków japoñskich dla GTK2
 Name:		im-ja
-Version:	0.6
-Release:	2
+Version:	1.0
+Release:	1
 License:	LGPL
 Group:		Applications/Editors
 Source0:	http://im-ja.sourceforge.net/%{name}-%{version}.tar.gz
-# Source0-md5:	aeb6e5454587fd7e7a3f41629d26b914
+# Source0-md5:	0adc0e09db96ba416ce6ce72a77680e6
 BuildRequires:	Canna-devel
-BuildRequires:	gtk+2-devel
+BuildRequires:	GConf2-devel >= 2.0
+BuildRequires:	gtk+2-devel >= 1:2.2.0
+BuildRequires:	pkgconfig
+BuildRequires:	libglade2-devel >= 1:2.0
 Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
 Requires(post,postun):	gtk+2
-Requires:	gtk+2 >= 2.0.6
+Requires:	gtk+2 >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,6 +41,7 @@ mog± byæ konfigurowane narzêdziem z graficznym interfejsem.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
