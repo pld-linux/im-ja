@@ -1,12 +1,12 @@
 Summary:	Japanese input method for GTK2
 Summary(pl):	Metoda wprowadzania znaków japoñskich dla GTK2
 Name:		im-ja
-Version:	1.0
+Version:	1.1
 Release:	1
 License:	LGPL
 Group:		Applications/Editors
 Source0:	http://im-ja.sourceforge.net/%{name}-%{version}.tar.gz
-# Source0-md5:	0adc0e09db96ba416ce6ce72a77680e6
+# Source0-md5:	44ef86e828e62d7a3f941d452d2bcb83
 BuildRequires:	Canna-devel
 BuildRequires:	GConf2-devel >= 2.0
 BuildRequires:	gnome-panel-devel >= 2.0.0
