@@ -6,9 +6,10 @@ License:	LGPL
 Group:		Applications/Editors
 Source0:	http://im-ja.sourceforge.net/%{name}-%{version}.tar.gz
 # Source0-md5:	aeb6e5454587fd7e7a3f41629d26b914
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Requires:	gtk+2 >= 2.0.6
 BuildRequires:	gtk+2-devel
+BuildRequires:	Canna-devel
+Requires:	gtk+2 >= 2.0.6
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 im-ja is a Japanese input module for GTK2. Currently supports
