@@ -54,6 +54,7 @@ umask 022
 %gconf_schema_install
 
 %postun
+umask 022
 /sbin/ldconfig
 %{_bindir}/gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules
 
