@@ -9,6 +9,7 @@ Source0:	http://im-ja.sourceforge.net/%{name}-%{version}.tar.gz
 # Source0-md5:	0adc0e09db96ba416ce6ce72a77680e6
 BuildRequires:	Canna-devel
 BuildRequires:	GConf2-devel >= 2.0
+BuildRequires:	gnome-panel-devel >= 2.0.0
 BuildRequires:	gtk+2-devel >= 1:2.2.0
 BuildRequires:	pkgconfig
 BuildRequires:	libglade2-devel >= 1:2.0
@@ -35,6 +36,7 @@ mog± byæ konfigurowane narzêdziem z graficznym interfejsem.
 
 %build
 %configure \
+	--disable-anthy \
 	--disable-wnn
 
 %{__make}
@@ -47,6 +49,8 @@ rm -rf $RPM_BUILD_ROOT
 
 # useless
 rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/immodules/*.la
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -62,14 +66,21 @@ umask 022
 /sbin/ldconfig
 %{_bindir}/gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 # COPYING contains only note about different licenses, not license text
 %doc README COPYING TODO AUTHORS ChangeLog
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/gtk-2.0/*/immodules/*.so
-%attr(755,root,root) %{_libdir}/im-ja
-%{_datadir}/control-center-2.0/*
+%attr(755,root,root) %{_libdir}/gtk-2.0/*/immodules/im-ja.so
+%dir %{_libdir}/im-ja
+# -gnome?
+%attr(755,root,root) %{_libdir}/im-ja/im-ja-applet
+%attr(755,root,root) %{_libdir}/im-ja/kpengine
+%{_libdir}/bonobo/servers/*.server
 %{_datadir}/%{name}
+%{_datadir}/control-center-2.0/capplets/*.desktop
+%{_datadir}/gnome-2.0/ui/*.xml
+%{_pixmapsdir}/*.jpg
+%{_pixmapsdir}/*.png
 %{_mandir}/man1/*
 %{_sysconfdir}/gconf/schemas/%{name}.schemas
