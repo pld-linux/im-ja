@@ -40,6 +40,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# useless
+rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/immodules/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -53,10 +56,11 @@ umask 022
 
 %files
 %defattr(644,root,root,755)
+# COPYING contains only note about different licenses, not license text
 %doc README COPYING TODO AUTHORS ChangeLog
 %attr(755,root,root) %{_bindir}/*
-%{_libdir}/gtk-2.0/*
-%{_libdir}/im-ja
+%attr(755,root,root) %{_libdir}/gtk-2.0/*/immodules/*.so
+%attr(755,root,root) %{_libdir}/im-ja
 %{_datadir}/control-center-2.0/*
 %{_datadir}/%{name}
 %{_mandir}/man1/*
