@@ -9,8 +9,9 @@ Source0:	http://im-ja.sourceforge.net/%{name}-%{version}.tar.gz
 # Source0-md5:	aeb6e5454587fd7e7a3f41629d26b914
 BuildRequires:	Canna-devel
 BuildRequires:	gtk+2-devel
-Requires(post):	/sbin/ldconfig
+Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
+Requires(post,postun):	gtk+2
 Requires:	gtk+2 >= 2.0.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -52,7 +53,9 @@ umask 022
 %{_bindir}/gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules
 %gconf_schema_install
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
+%{_bindir}/gtk-query-immodules-2.0 > %{_sysconfdir}/gtk-2.0/gtk.immodules
 
 %files
 %defattr(644,root,root,755)
