@@ -1,5 +1,5 @@
 Summary:	Japanese input method for GTK2
-Summary(pl):	Metoda wprowadzania znaków japoñskich dla GTK2
+Summary(pl.UTF-8):   Metoda wprowadzania znakÃ³w japoÅ„skich dla GTK2
 Name:		im-ja
 Version:	1.3
 Release:	1
@@ -25,11 +25,11 @@ hiragana, katakana, half-width katakana, zenkaku, canna, wnn and
 kanji character recognition inputs. Hotkeys can be configured via a
 GUI configurator.
 
-%description -l pl
-im-ja to modu³ wej¶ciowy do wprowadzania znaków japoñskich dla GTK2.
-Aktualnie obs³uguje metody rozpoznawania znaków hiragana, katakana,
-katakana po³ówkowej szeroko¶ci, zenkaku, canna, wnn i kanji. Klawisze
-mog± byæ konfigurowane narzêdziem z graficznym interfejsem.
+%description -l pl.UTF-8
+im-ja to moduÅ‚ wejÅ›ciowy do wprowadzania znakÃ³w japoÅ„skich dla GTK2.
+Aktualnie obsÅ‚uguje metody rozpoznawania znakÃ³w hiragana, katakana,
+katakana poÅ‚Ã³wkowej szerokoÅ›ci, zenkaku, canna, wnn i kanji. Klawisze
+mogÄ… byÄ‡ konfigurowane narzÄ™dziem z graficznym interfejsem.
 
 %prep
 %setup -q
