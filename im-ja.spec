@@ -1,5 +1,5 @@
 Summary:	Japanese input method for GTK2
-Summary(pl.UTF-8):   Metoda wprowadzania znaków japońskich dla GTK2
+Summary(pl.UTF-8):	Metoda wprowadzania znaków japońskich dla GTK2
 Name:		im-ja
 Version:	1.3
 Release:	1
