@@ -51,7 +51,7 @@ mogą być konfigurowane narzędziem z graficznym interfejsem.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__intltoolize}
